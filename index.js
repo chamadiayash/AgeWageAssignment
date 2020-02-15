@@ -18,7 +18,7 @@ const initialize = async (retries = 0) => {
         });
     }
     catch(err) {
-        console.log('error init db', err);
+        throw(err);
         //handle error. Maybe add retries for each initialization
     }
     // Add other initialization logic.
