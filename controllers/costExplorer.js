@@ -56,8 +56,15 @@ const getBreakDowm = (thisProjectCosts, parentNode) => {
 }
 
 const getCostForQuery = async (clients, projects, cost_types) => {
-    
-    const dbQueryResp = await DB.getQuery(getQuery(clients, projects, cost_types));
+    let dbQueryResp = []
+    try {
+        dbQueryResp = await DB.getQuery(getQuery(clients, projects, cost_types));
+    } catch(err) {
+        console.log('err', err); //use logger
+        return [{
+            err
+        }];
+    }
     const clientIDs = _.uniq(dbQueryResp.map(a=>a.clientId)).sort();
     const retValue = [];
     _.forEach(clientIDs, eachClient => {

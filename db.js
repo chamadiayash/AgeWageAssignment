@@ -13,7 +13,7 @@ class DB {
     }
     static async getQuery(query) {
         return new Promise((resolve, reject) => {
-            this.db.query(query, (error, results, fields) => {
+            this.db.query(query, (error, results) => {
                 if(error) reject(error);
                 resolve(results);
             })
